@@ -13,7 +13,6 @@ namespace WebServiceTask
         const double ABSOLUTEZEROCELSIUS = -273.15;
         const double ABSOLUTEZEROFARENGHEIT = -459.67;
 
-
         private ConverterTemperature()
         {
         }
@@ -157,7 +156,7 @@ namespace WebServiceTask
         /// </summary>
         /// <returns>Celsius.</returns>
         public double KelvinToCelsius()
-        {
+        {            
             return temperature - 273.15;
         }
 
@@ -194,7 +193,7 @@ namespace WebServiceTask
         /// <returns>Celsius.</returns>
         public double FarengheitToCelsius()
         {
-            return (temperature - 32) * (5 / 9);
+            return ((temperature - 32) * 5) / 9;
         }
 
         /// <summary>

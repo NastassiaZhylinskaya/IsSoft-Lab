@@ -67,6 +67,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandConverter.cs" />
     <Compile Include="ConverterLength.cs" />
     <Compile Include="ConvertersEnum.cs" />
     <Compile Include="ConverterTemperature.cs" />
@@ -77,6 +78,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Factory.cs" />
+    <Compile Include="ICommand.cs" />
     <Compile Include="IdentifyConverterType.cs" />
     <Compile Include="IConvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

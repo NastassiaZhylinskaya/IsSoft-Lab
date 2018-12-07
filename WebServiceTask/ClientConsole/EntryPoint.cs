@@ -9,14 +9,26 @@ namespace ClientConsole
         {
             try
             {
-                Console.WriteLine("Enter basic measure system: ");
-                string basicMeasure = Console.ReadLine();
-                Console.WriteLine("Enter new measure system: ");
-                string newMeasure = Console.ReadLine();
-                Console.WriteLine("Enter value: ");
-                string value = Console.ReadLine();
-                ConverterWebService converter = new ConverterWebService();
-                Console.WriteLine("\n{0}", converter.ConvertTo(basicMeasure, newMeasure, value));
+                string keyValue;
+                
+                ConverterWebService converterWebService = new ConverterWebService();
+                
+                do
+                {
+                    Console.WriteLine("Enter basic measure system: ");
+                    string basicMeasure = Console.ReadLine();
+                    Console.WriteLine("Enter new measure system: ");
+                    string newMeasure = Console.ReadLine();
+                    Console.WriteLine("Enter value: ");
+                    string value = Console.ReadLine();
+                    converterWebService.Converter(basicMeasure, newMeasure, value);
+                    Console.WriteLine("Enter 'yes', if want to continue convert some data.");
+                    keyValue = Console.ReadLine();
+                    
+                }
+                while (keyValue == "yes");
+                
+                Console.WriteLine(converterWebService.ShowConvertedResults());
             }
             catch (Exception ex)
             {
