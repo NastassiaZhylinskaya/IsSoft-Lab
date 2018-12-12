@@ -12,6 +12,9 @@ namespace WebServiceTask
     [System.ComponentModel.ToolboxItem(false)]
     public class ConverterWebService : WebService
     {
+        public delegate string Result();
+        public event Result EventSendCommand;
+
         List<ICommand> listOfCommand = new List<ICommand>();
 
         public ConverterWebService()
@@ -21,16 +24,24 @@ namespace WebServiceTask
         [WebMethod()]
         public bool Converter(string basicMeasure, string newMeasure, string value)
         {
-            IConvert converter = Factory.Create(basicMeasure);
-            CommandConverter commandConverter = new CommandConverter(converter, basicMeasure, newMeasure, value);
-            string newValue = commandConverter.Execute();
-            listOfCommand.Add(commandConverter);
+            if (EventSendCommand == null)
+            {
+                IConvert converter = Factory.Create(basicMeasure);
+                CommandConverter commandConverter = new CommandConverter(converter, basicMeasure, newMeasure, value);
+                string newValue = commandConverter.Execute();
+                listOfCommand.Add(commandConverter);
+            }
+            else
+            {
+                EventSendCommand();
+            }
             return true;
         }
 
         [WebMethod()]
         public string ShowConvertedResults()
         {
+            EventSendCommand += ShowConvertedResults;
             StringBuilder results = new StringBuilder();
             foreach(CommandConverter commandConverter in listOfCommand)
             {
