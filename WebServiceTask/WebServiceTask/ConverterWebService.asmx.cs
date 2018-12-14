@@ -13,42 +13,52 @@ namespace WebServiceTask
     public class ConverterWebService : WebService
     {
         public delegate string Result();
-        public event Result EventSendCommand;
-
-        List<ICommand> listOfCommand = new List<ICommand>();
+        public event Result GetConvertedResult;
+        
+        List<Result> listOfDelegates = new List<Result>();
+        StringBuilder results = new StringBuilder();
 
         public ConverterWebService()
         {
+            GetConvertedResult += FormsStringsWithConvertedResults;
+            GetConvertedResult += FormsStringsWithConvertedReversedResults;
         }
 
         [WebMethod()]
-        public bool Converter(string basicMeasure, string newMeasure, string value)
+        public void Convert(string basicMeasure, string newMeasure, string value)
         {
-            if (EventSendCommand == null)
-            {
-                IConvert converter = Factory.Create(basicMeasure);
-                CommandConverter commandConverter = new CommandConverter(converter, basicMeasure, newMeasure, value);
-                string newValue = commandConverter.Execute();
-                listOfCommand.Add(commandConverter);
-            }
-            else
-            {
-                EventSendCommand();
-            }
-            return true;
+            IConvert converter = Factory.Create(basicMeasure);
+            CommandConverter commandConverter = new CommandConverter(converter, basicMeasure, newMeasure, value);            
+            listOfDelegates.Add(commandConverter.Execute);
         }
 
         [WebMethod()]
         public string ShowConvertedResults()
         {
-            EventSendCommand += ShowConvertedResults;
-            StringBuilder results = new StringBuilder();
-            foreach(CommandConverter commandConverter in listOfCommand)
-            {
-                results.Append(commandConverter.basicMeasure + " " + commandConverter.newMeasure + " " + commandConverter.newValue + "\n");
-            }
+            GetConvertedResult();
             return results.ToString();
         }
 
+        private string FormsStringsWithConvertedResults()
+        {
+            foreach (var convertorDelegate in listOfDelegates)
+            {
+                results.Append(convertorDelegate.Invoke() + "\n");
+            }
+
+            return results.ToString();
+        }
+
+        private string FormsStringsWithConvertedReversedResults()
+        {
+            listOfDelegates.Reverse();
+
+            foreach (var convertorDelegate in listOfDelegates)
+            {
+                results.Append(convertorDelegate.Invoke() + "\n");
+            }
+
+            return results.ToString();
+        }
     }
 }
