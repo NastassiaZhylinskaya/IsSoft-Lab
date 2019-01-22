@@ -43,6 +43,10 @@ x64/
 *.log
 *.svclog
 *.scc
+*.ide
+*.ide-shm
+*.ide-wal
+*.lock
 
 # Visual C++ cache files
 ipch/
@@ -56,6 +60,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.vs
 
 # Guidance Automation Toolkit
 *.gpState
