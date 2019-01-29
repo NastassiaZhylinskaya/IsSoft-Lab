@@ -28,12 +28,12 @@ namespace Task20_TC
         }
 
         [Test]
-        [TestCase("Selenium Test")]
-        public void CorrectUserLogin(string expectedResult)
+        public void CorrectUserLogin()
         {
+            string expectedUserName = "Selenium Test";
             LogInForm logIn = new LogInForm(chromeDriver);
             logIn.LogIn(USEREMAIL, USERPASSWORD);
-            Assert.AreEqual(expectedResult, logIn.GetInformationAboutUserName());
+            Assert.AreEqual(expectedUserName, logIn.GetInformationAboutUserName(), "User names are not equal.");
         }
     }
 }
