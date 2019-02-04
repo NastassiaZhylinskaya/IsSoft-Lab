@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task50TC", "Task50TC\Task50TC.csproj", "{C32981E8-260D-4301-8BDC-F4857066A29E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWithFrames", "TestWithFrames\TestWithFrames.csproj", "{D0A0513E-2573-4809-8251-9B4D79363634}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsForAlerts", "TestsForAlerts\TestsForAlerts.csproj", "{8E955617-DD0C-4A9D-A036-88EEA6BBEAD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C32981E8-260D-4301-8BDC-F4857066A29E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C32981E8-260D-4301-8BDC-F4857066A29E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C32981E8-260D-4301-8BDC-F4857066A29E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A0513E-2573-4809-8251-9B4D79363634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A0513E-2573-4809-8251-9B4D79363634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A0513E-2573-4809-8251-9B4D79363634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A0513E-2573-4809-8251-9B4D79363634}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E955617-DD0C-4A9D-A036-88EEA6BBEAD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E955617-DD0C-4A9D-A036-88EEA6BBEAD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E955617-DD0C-4A9D-A036-88EEA6BBEAD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E955617-DD0C-4A9D-A036-88EEA6BBEAD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
