@@ -1,16 +1,11 @@
 ﻿using FinalTaskGM.PageObject;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalTaskGM.Tests
 {
-    class LoginTest : BaseTest
+    class LogoutTest : BaseTest
     {
         private ChromeDriver chromeDriver;
         private string pathToScreenshots;
@@ -42,27 +37,31 @@ namespace FinalTaskGM.Tests
         }
 
         [TestCase("trainingtestqa111", "TrainingQA111")]
-        public void FirstUserLogin(string login, string password)
+        public void FirstUserLogout(string login, string password)
         {
             LoginPages loginPages = new LoginPages(chromeDriver);
             loginPages.EnterUserName(login);
             loginPages.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(chromeDriver);
-            
-            Assert.AreEqual(expectedFirstUserName, inboxPage.GetInformationAboutUserName(), "User emails are not equal.");
+            inboxPage.ClickAccountIcon();
+            inboxPage.ClickLogoutButton();
+
+            Assert.AreEqual(expectedFirstUserName, inboxPage.CheckLogoutAccount(), "User emails are not equal.");
         }
-        
+
         [TestCase("trainingtestqa222", "TrainingQA222")]
-        public void SecondtUserLogin(string login, string password)
+        public void SecondtUserLogout(string login, string password)
         {
             LoginPages loginPages = new LoginPages(chromeDriver);
             loginPages.EnterUserName(login);
             loginPages.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(chromeDriver);
+            inboxPage.ClickAccountIcon();
+            inboxPage.ClickLogoutButton();
 
-            Assert.AreEqual(expectedSecondUserName, inboxPage.GetInformationAboutUserName(), "User emails are not equal.");
-        }        
+            Assert.AreEqual(expectedSecondUserName, inboxPage.CheckLogoutAccount(), "User emails are not equal.");
+        }
     }
 }
