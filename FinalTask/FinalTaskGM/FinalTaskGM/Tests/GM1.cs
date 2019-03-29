@@ -5,7 +5,7 @@ using System;
 
 namespace FinalTaskGM.Tests
 {
-    class LogoutTest : BaseTest
+    class GM1 : BaseTest
     {
         private ChromeDriver chromeDriver;
         private string pathToScreenshots;

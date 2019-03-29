@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FinalTaskGM.Tests
 {
-    class LoginTest : BaseTest
+    class GM2 : BaseTest
     {
         private ChromeDriver chromeDriver;
         private string pathToScreenshots;

@@ -63,10 +63,12 @@
     <Compile Include="PageObject\BasePage.cs" />
     <Compile Include="PageObject\InboxPage.cs" />
     <Compile Include="PageObject\LoginPages.cs" />
+    <Compile Include="PageObject\NewEmailTab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\BaseTest.cs" />
-    <Compile Include="Tests\LoginTest.cs" />
-    <Compile Include="Tests\LogoutTest.cs" />
+    <Compile Include="Tests\GM3.cs" />
+    <Compile Include="Tests\GM2.cs" />
+    <Compile Include="Tests\GM1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
