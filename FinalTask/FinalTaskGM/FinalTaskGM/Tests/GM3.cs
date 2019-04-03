@@ -1,55 +1,50 @@
 ﻿using FinalTaskGM.PageObject;
 using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
 using System;
 
 namespace FinalTaskGM.Tests
 {
+    [TestFixtureSource("Locally")]
+    [TestFixture("SauceLabs")]
+    [TestFixture("SeleniumGrid")]
     public class GM3 : BaseTest
     {
-        private ChromeDriver chromeDriver;
+        public GM3(string type) : base(type)
+        {
+        }
+
         private const string user1email = "trainingtestqa111";
         private const string user1password = "TrainingQA111";
-        private string pathToScreenshots;
-        
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            pathToScreenshots = $"{TestContext.CurrentContext.TestDirectory}\\Screenshots";
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            chromeDriver = new ChromeDriver();
-            chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Manage().Cookies.DeleteAllCookies();
-            chromeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15);
-            chromeDriver.Url = "https://gmail.com";
-            TakeScreenshot(pathToScreenshots, TestContext.CurrentContext.Test.MethodName, chromeDriver);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            chromeDriver.Quit();
-        }
+        private const string user2email = "trainingtestqa222";
+        private const string user2password = "TrainingQA222";
 
         [Test]
         public void VerifyTheAbilityToSendEmails()
         {
-            LoginPages loginPages = new LoginPages(chromeDriver);
+            LoginPages loginPages = new LoginPages(driver);
             loginPages.EnterUserName(user1email);
             loginPages.EnterUserPassword(user1password);
 
-            InboxPage inboxPage = new InboxPage(chromeDriver);
+            InboxPage inboxPage = new InboxPage(driver);
             inboxPage.ClickNewEmailButton();
 
-            NewEmailTab newEmail = new NewEmailTab(chromeDriver);
+            NewEmailTab newEmail = new NewEmailTab(driver);
             newEmail.WriteNewEmail();
             newEmail.SendNewEmail();
-            inboxPage.ClickSendedEmailsButton();
-        }
 
+            string actualDate = DateTime.Now.Hour + ":" + DateTime.Now.Minute;
+
+            inboxPage.ClickAccountIcon();
+            inboxPage.ClickLogoutButton();
+
+            loginPages.ClickChooseAccountButton();
+            loginPages.ClickChangeAccountButton();
+
+            loginPages.EnterUserName(user2email);
+            loginPages.EnterUserPassword(user2password);
+
+            Assert.AreEqual(inboxPage.GetDateMessage(), actualDate, "Actual date is not equal with expected date.");
+
+        }
     }
 }
