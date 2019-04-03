@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System.Threading;
 
 namespace FinalTaskGM.PageObject
 {
@@ -20,14 +21,17 @@ namespace FinalTaskGM.PageObject
         
         public void WriteNewEmail()
         {
+            Thread.Sleep(1000);
             driver.FindElement(SendToTextArea).SendKeys(secondUserEmail);
             WaitUntilElementIsDisplayed(ChooseEmailButton, driver);
+            Thread.Sleep(1000);
             driver.FindElement(ChooseEmailButton).Click();
             driver.FindElement(EmailBodyTextArea).SendKeys(textOfTheMessage);
         }
 
         public void SendNewEmail()
         {
+            Thread.Sleep(1000);
             driver.FindElement(EnterEmailButton).Click();
         }        
 
