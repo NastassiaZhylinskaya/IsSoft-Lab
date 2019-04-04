@@ -3,12 +3,12 @@ using NUnit.Framework;
 
 namespace FinalTaskGM.Tests
 {
-    [TestFixtureSource("Locally")]
-    [TestFixture("SauceLabs")]
-    [TestFixture("SeleniumGrid")]
+    [TestFixture(TestService.Locally)]
+    [TestFixture(TestService.SauceLabs)]
+    [TestFixture(TestService.SeleniumGrid)]
     public class GM2 : BaseTest
     {
-        public GM2(string type) : base(type)
+        public GM2(TestService testService) : base(testService)
         {
         }
 
@@ -18,9 +18,9 @@ namespace FinalTaskGM.Tests
         [TestCase("trainingtestqa111", "TrainingQA111")]
         public void FirstUserLogout(string login, string password)
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(login);
-            loginPages.EnterUserPassword(password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(login);
+            loginPage.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(driver);
             inboxPage.ClickAccountIcon();
@@ -32,9 +32,9 @@ namespace FinalTaskGM.Tests
         [TestCase("trainingtestqa222", "TrainingQA222")]
         public void SecondtUserLogout(string login, string password)
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(login);
-            loginPages.EnterUserPassword(password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(login);
+            loginPage.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(driver);
             inboxPage.ClickAccountIcon();

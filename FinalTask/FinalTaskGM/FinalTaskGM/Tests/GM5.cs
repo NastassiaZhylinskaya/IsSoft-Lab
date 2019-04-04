@@ -3,12 +3,12 @@ using NUnit.Framework;
 
 namespace FinalTaskGM.Tests
 {
-    [TestFixtureSource("Locally")]
-    [TestFixture("SauceLabs")]
-    [TestFixture("SeleniumGrid")]
+    [TestFixture(TestService.Locally)]
+    [TestFixture(TestService.SauceLabs)]
+    [TestFixture(TestService.SeleniumGrid)]
     public class GM5 : BaseTest
     {
-        public GM5(string type) : base(type)
+        public GM5(TestService testService) : base(testService)
         {
         }
 
@@ -18,9 +18,9 @@ namespace FinalTaskGM.Tests
         [Test]
         public void VerifyThatDeletedEmailIsListedInTrash()
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(user2email);
-            loginPages.EnterUserPassword(user2password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(user2email);
+            loginPage.EnterUserPassword(user2password);
 
             InboxPage inboxPage = new InboxPage(driver);
             string dateEmails = inboxPage.GetDateMessage();

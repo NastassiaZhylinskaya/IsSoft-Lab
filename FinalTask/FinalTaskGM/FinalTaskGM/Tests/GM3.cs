@@ -4,12 +4,12 @@ using System;
 
 namespace FinalTaskGM.Tests
 {
-    [TestFixtureSource("Locally")]
-    [TestFixture("SauceLabs")]
-    [TestFixture("SeleniumGrid")]
+    [TestFixture(TestService.Locally)]
+    [TestFixture(TestService.SauceLabs)]
+    [TestFixture(TestService.SeleniumGrid)]
     public class GM3 : BaseTest
     {
-        public GM3(string type) : base(type)
+        public GM3(TestService testService) : base(testService)
         {
         }
 
@@ -21,9 +21,9 @@ namespace FinalTaskGM.Tests
         [Test]
         public void VerifyTheAbilityToSendEmails()
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(user1email);
-            loginPages.EnterUserPassword(user1password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(user1email);
+            loginPage.EnterUserPassword(user1password);
 
             InboxPage inboxPage = new InboxPage(driver);
             inboxPage.ClickNewEmailButton();
@@ -37,11 +37,11 @@ namespace FinalTaskGM.Tests
             inboxPage.ClickAccountIcon();
             inboxPage.ClickLogoutButton();
 
-            loginPages.ClickChooseAccountButton();
-            loginPages.ClickChangeAccountButton();
+            loginPage.ClickChooseAccountButton();
+            loginPage.ClickChangeAccountButton();
 
-            loginPages.EnterUserName(user2email);
-            loginPages.EnterUserPassword(user2password);
+            loginPage.EnterUserName(user2email);
+            loginPage.EnterUserPassword(user2password);
 
             Assert.AreEqual(inboxPage.GetDateMessage(), actualDate, "Actual date is not equal with expected date.");
 

@@ -3,13 +3,13 @@ using NUnit.Framework;
 
 namespace FinalTaskGM.Tests
 {
-    [TestFixture("Locally")]
-    [TestFixture("SauceLabs")]
-    [TestFixture("SeleniumGrid")]
+    [TestFixture(TestService.Locally)]
+    [TestFixture(TestService.SauceLabs)]
+    [TestFixture(TestService.SeleniumGrid)]
     public class GM1 : BaseTest
     {
-        public GM1(string type) : base (type)
-        {            
+        public GM1 (TestService testService) : base(testService)
+        {
         }
 
         const string expectedFirstUserName = "trainingtestqa111@gmail.com";
@@ -18,9 +18,9 @@ namespace FinalTaskGM.Tests
         [TestCase("trainingtestqa111", "TrainingQA111")]
         public void FirstUserLogin(string login, string password)
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(login);
-            loginPages.EnterUserPassword(password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(login);
+            loginPage.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(driver);
             
@@ -30,9 +30,9 @@ namespace FinalTaskGM.Tests
         [TestCase("trainingtestqa222", "TrainingQA222")]
         public void SecondtUserLogin(string login, string password)
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(login);
-            loginPages.EnterUserPassword(password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(login);
+            loginPage.EnterUserPassword(password);
 
             InboxPage inboxPage = new InboxPage(driver);
 

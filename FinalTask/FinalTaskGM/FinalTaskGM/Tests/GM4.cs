@@ -4,12 +4,12 @@ using System;
 
 namespace FinalTaskGM.Tests
 {
-    [TestFixtureSource("Locally")]
-    [TestFixture("SauceLabs")]
-    [TestFixture("SeleniumGrid")]
+    [TestFixture(TestService.Locally)]
+    [TestFixture(TestService.SauceLabs)]
+    [TestFixture(TestService.SeleniumGrid)]
     public class GM4 : BaseTest
     {
-        public GM4(string type) : base(type)
+        public GM4(TestService testService) : base(testService)
         {
         }
 
@@ -19,9 +19,9 @@ namespace FinalTaskGM.Tests
         [Test]
         public void VerifyThatSentEmailAppearsInSentMailFolder()
         {
-            LoginPages loginPages = new LoginPages(driver);
-            loginPages.EnterUserName(user1email);
-            loginPages.EnterUserPassword(user1password);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(user1email);
+            loginPage.EnterUserPassword(user1password);
 
             InboxPage inboxPage = new InboxPage(driver);
             inboxPage.ClickNewEmailButton();
