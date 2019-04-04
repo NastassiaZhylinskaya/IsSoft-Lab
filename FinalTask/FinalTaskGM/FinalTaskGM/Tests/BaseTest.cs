@@ -10,7 +10,7 @@ using System.IO;
 
 namespace FinalTaskGM.Tests
 {
-    public class BaseTest /*: AllureReport*/
+    public class BaseTest : AllureReport
     {
         public IWebDriver driver { get; set; }
         protected string pathToScreenshots;
