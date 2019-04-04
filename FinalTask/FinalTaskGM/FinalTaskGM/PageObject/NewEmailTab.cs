@@ -14,16 +14,15 @@ namespace FinalTaskGM.PageObject
 
         private const string secondUserEmail = "trainingtestqa222@gmail.com";
         private const string textOfTheMessage = "Hello User!";
-        private By SendToTextArea = By.XPath("//textarea[@name = 'to']");
-        private By EmailBodyTextArea = By.XPath("//td[@class = 'Ap']/div[@class = 'Ar Au']/div[@class = 'Am Al editable LW-avf']");
-        private By EnterEmailButton = By.XPath("//div[@class = 'T-I J-J5-Ji aoO T-I-atl L3']");        
-        private By ChooseEmailButton = By.XPath("//div[@class = 'aq aFf']");
+        public By SendToTextArea = By.XPath("//textarea[@name = 'to']");
+        public By EmailBodyTextArea = By.XPath("//td[@class = 'Ap']/div[@class = 'Ar Au']/div[@class = 'Am Al editable LW-avf']");
+        public By EnterEmailButton = By.XPath("//div[@class = 'T-I J-J5-Ji aoO T-I-atl L3']");
+        public By ChooseEmailButton = By.XPath("//div[@class = 'aq aFf']");
         
         public void WriteNewEmail()
         {
             Thread.Sleep(1000);
             driver.FindElement(SendToTextArea).SendKeys(secondUserEmail);
-            WaitUntilElementIsDisplayed(ChooseEmailButton, driver);
             Thread.Sleep(1000);
             driver.FindElement(ChooseEmailButton).Click();
             driver.FindElement(EmailBodyTextArea).SendKeys(textOfTheMessage);
@@ -33,7 +32,6 @@ namespace FinalTaskGM.PageObject
         {
             Thread.Sleep(1000);
             driver.FindElement(EnterEmailButton).Click();
-        }        
-
+        }
     }
 }

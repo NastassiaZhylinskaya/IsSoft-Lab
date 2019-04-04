@@ -13,18 +13,17 @@ namespace FinalTaskGM.PageObject
             this.driver = driver;
         }
 
-        private By UserNameLabel = By.XPath("//div[@class = 'gb_db']");
-        private By AccountIcon = By.XPath("//span[@class = 'gb_ya gbii']");
-        private By LogoutButton = By.XPath("//a[@id ='gb_71']");
-        private By ProfileIdentifireLabel = By.XPath("//div[@id ='profileIdentifier']");
-        private By NewEmailButton = By.XPath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
-        private By SendedEmailsButton = By.XPath("//div[@class = 'TN bzz aHS-bnu']/div[2]/span/a");
-        private By OpenEmailButton = By.CssSelector("div[role='main'] tbody>tr>td>div>div>div>span>span");
-        private By DateSendedMessage = By.CssSelector("div[role = 'main'] tbody>tr>td>span>span");
-        private By CheckBoxToDeleteEmail = By.CssSelector("div[role='tabpanel'] div[role='checkbox']");
-        private By DeleteMessageButton = By.XPath("//div[@class='T-I J-J5-Ji nX T-I-ax7 T-I-Js-Gs mA']");
-        private By MoreOptionsButton = By.XPath("//*[@class='CJ'][contains(text(),'Ещё')]");
-        private By TrashedEmailsButton = By.XPath("//div[@data-tooltip='Корзина']");
+        public By UserNameLabel = By.XPath("//div[@class = 'gb_db']");
+        public By AccountIcon = By.XPath("//span[@class = 'gb_ya gbii']");
+        public By LogoutButton = By.XPath("//a[@id ='gb_71']");
+        public By ProfileIdentifireLabel = By.XPath("//div[@id ='profileIdentifier']");
+        public By NewEmailButton = By.XPath("//div[@class = 'T-I J-J5-Ji T-I-KE L3']");
+        public By SendedEmailsButton = By.XPath("//div[@class = 'TN bzz aHS-bnu']/div[2]/span/a");
+        public By DateSendedMessage = By.CssSelector("div[role = 'main'] tbody>tr>td>span>span");
+        public By CheckBoxToDeleteEmail = By.CssSelector("div[role='tabpanel'] div[role='checkbox']");
+        public By DeleteMessageButton = By.XPath("//div[@class='T-I J-J5-Ji nX T-I-ax7 T-I-Js-Gs mA']");
+        public By MoreOptionsButton = By.XPath("//*[@class='CJ'][contains(text(),'Ещё')]");
+        public By TrashedEmailsButton = By.XPath("//div[@data-tooltip='Корзина']");
 
         public void ClickLogoutButton()
         {
@@ -34,7 +33,6 @@ namespace FinalTaskGM.PageObject
 
         public void ClickAccountIcon()
         {
-            WaitUntilElementIsDisplayed(AccountIcon, driver);
             Thread.Sleep(5000);
             driver.FindElement(AccountIcon).Click();
         }
@@ -42,46 +40,32 @@ namespace FinalTaskGM.PageObject
         public void ClickNewEmailButton()
         {
             Thread.Sleep(1000);
-            WaitUntilElementIsDisplayed(NewEmailButton, driver);
             driver.FindElement(NewEmailButton).Click();
         }
 
         public void ClickSendedEmailsButton()
         {
             Thread.Sleep(1000);
-            WaitUntilElementIsDisplayed(SendedEmailsButton, driver);
             driver.FindElement(SendedEmailsButton).Click();
-        }
-
-        public void ClickOpenEmailButton()
-        {
-            Thread.Sleep(1000);
-            WaitUntilElementIsDisplayed(OpenEmailButton, driver);
-            driver.FindElement(OpenEmailButton).Click();
         }
 
         public string CheckLogoutAccount()
         {
             Thread.Sleep(1000);
-            WaitUntilElementIsDisplayed(ProfileIdentifireLabel, driver);
-            string value = driver.FindElement(ProfileIdentifireLabel).Text;
-            return value;
+            return driver.FindElement(ProfileIdentifireLabel).Text;
         }
 
         public string GetInformationAboutUserName()
         {
             Thread.Sleep(1000);
             driver.FindElement(AccountIcon).Click();
-            WaitUntilElementIsDisplayed(UserNameLabel, driver);
-            string value = driver.FindElement(UserNameLabel).Text;
-            return value;
+            return driver.FindElement(UserNameLabel).Text;
         }
 
         public string GetDateMessage()
         {
             Thread.Sleep(5000);
-            string date = driver.FindElements(DateSendedMessage)[0].Text;
-            return date;
+            return driver.FindElements(DateSendedMessage)[0].Text;
         }
         
         public void ClickCheckBoxToDeleteEmail()
